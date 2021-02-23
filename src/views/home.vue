@@ -21,7 +21,10 @@
         </el-aside>
         <el-main>
           <tabs>
-            <personal-swiper slot="personality"></personal-swiper>
+            <personal-swiper
+              slot="personality"
+              :list="swiperList"
+            ></personal-swiper>
           </tabs>
         </el-main>
       </el-container>

@@ -8,7 +8,7 @@
           :class="index === current ? 'active' : ''"
           @click="bannerClick(index, item)"
         >
-          <img :src="item.url" alt="" />
+          <img :src="item.imageUrl" alt="" />
         </li>
       </ul>
       <div class="status">
@@ -82,12 +82,12 @@ export default {
         this.current--;
       } else {
         this.$emit("prev", this.current, this.list);
-        this.current = 3;
+        this.current = 9;
       }
     },
     // 点击下一张按钮
     next() {
-      if (this.current < 3) {
+      if (this.current < 9) {
         this.$emit("prev", this.current, this.list);
         this.current++;
       } else {

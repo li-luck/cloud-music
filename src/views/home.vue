@@ -21,10 +21,12 @@
         </el-aside>
         <el-main>
           <tabs>
-            <personal-swiper
-              slot="personality"
-              :list="swiperList"
-            ></personal-swiper>
+            <div class="home-swiper" slot="personality">
+              <personal-swiper :list="swiperList"></personal-swiper>
+            </div>
+            <div class="recommend" slot="personality">
+              <recommend :list="recommendList"></recommend>
+            </div>
           </tabs>
         </el-main>
       </el-container>
@@ -36,6 +38,7 @@
 import CloudMenu from "./../components/menu/menu";
 import Tabs from "./../components/tabs/tabs";
 import PersonalSwiper from "./../components/swiper/swiper";
+import Recommend from "./../components/recommend/recommend";
 
 import axios from "axios";
 
@@ -45,22 +48,40 @@ export default {
     CloudMenu,
     Tabs,
     PersonalSwiper,
+    Recommend,
   },
   data() {
     return {
       input2: "",
       swiperList: [],
+      recommendList: [],
+      lista: [],
+      listb: [],
     };
   },
   created() {
     this.getPersonalSwiper();
+    this.getRecommend();
   },
   methods: {
+    /**个性推荐  轮播 */
     getPersonalSwiper() {
       axios.get("banner").then((res) => {
         this.swiperList = res.data.banners;
-        console.log("个性推荐", res);
         console.log("个性推荐", this.swiperList);
+      });
+    },
+    /**推荐歌单 */
+    getRecommend() {
+      axios.get("top/playlist?offset=711&limit=12").then((res) => {
+        console.log(res);
+        this.recommendList = res.data.playlists;
+        this.lista = this.recommendList.filter((item, index) => {
+          return index < 6;
+        });
+        this.listb = this.recommendList.filter((item, index) => {
+          return index > 5;
+        });
       });
     },
   },
@@ -135,5 +156,19 @@ export default {
   background-color: white;
   color: #333;
   text-align: center;
+
+  .home-swiper {
+    width: 100%;
+    height: 350px;
+    float: left;
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+
+  .recommend {
+    width: 100%;
+    float: left;
+    margin: auto;
+  }
 }
 </style>

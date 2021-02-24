@@ -6,10 +6,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 
 axios.defaults.baseURL = 'https://autumnfish.cn/';
-axios.defaults.changeOrigin = true;
+axios.defaults.timeout = 5000;
 
 Vue.use(ElementUI);
-
+Vue.prototype.axios = axios;
 Vue.config.productionTip = false
 
 new Vue({

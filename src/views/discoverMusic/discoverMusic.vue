@@ -2,16 +2,14 @@
   <div class="box">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="个性推荐" name="personality">
-        <div class="home-swiper" slot="personality">
-          <personal-swiper :list="swiperList"></personal-swiper>
-        </div>
-        <div class="recommend" slot="personality">
-          <recommend :list="recommendList"></recommend>
+        <div class="person">
+          <personality />
         </div>
       </el-tab-pane>
       <el-tab-pane label="歌单" name="songSheet">
-        <slot name="songSheet"></slot>
-        歌单
+        <div class="songsheet">
+          <song-sheet />
+        </div>
       </el-tab-pane>
       <el-tab-pane label="排行榜" name="rankingList">
         <slot name="rankingList"></slot>
@@ -27,15 +25,15 @@
 </template>
 
 <script>
-import PersonalSwiper from "../../components/swiper/swiper";
-import Recommend from "../../components/recommend/recommend";
+import Personality from "../discoverMusic/personality";
+import SongSheet from "../discoverMusic/songSheet";
 
 import axios from "axios";
 export default {
   name: "discover-music",
   components: {
-    PersonalSwiper,
-    Recommend,
+    Personality,
+    SongSheet,
   },
   data() {
     return {
@@ -88,18 +86,10 @@ export default {
 .box {
   width: 100%;
   height: 100%;
-}
-.home-swiper {
-  width: 100%;
-  height: 350px;
-  float: left;
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-
-.recommend {
-  width: 100%;
-  float: left;
-  margin: auto;
+  .person,
+  .songsheet {
+    width: 100%;
+    height: 1000px;
+  }
 }
 </style>

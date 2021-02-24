@@ -1,19 +1,8 @@
 <template>
   <div class="box">
-    <h2>推荐歌单</h2>
-    <br />
-    <hr />
-    <br />
-
     <div class="card-box" v-for="(item, index) in list" :key="index">
       <el-card>
         <img :src="item.coverImgUrl" class="image" />
-        <div style="padding: 14px">
-          <div class="bottom clearfix">
-            <time class="time">{{ currentDate }}</time>
-            <el-button type="text" class="button">操作按钮</el-button>
-          </div>
-        </div>
       </el-card>
       <span>{{ item.name }}</span>
     </div>
@@ -25,9 +14,7 @@ export default {
   name: "recommend",
   props: ["list"],
   data() {
-    return {
-      currentDate: new Date(),
-    };
+    return {};
   },
   created() {
     this.init();
@@ -41,10 +28,6 @@ export default {
 <style lang="scss" scoped>
 .box {
   width: 100%;
-
-  h2 {
-    text-align: left;
-  }
 }
 .card-box {
   width: 250px;
@@ -59,8 +42,11 @@ export default {
   }
   span {
     float: left;
-    line-height: 50px;
-    font-size: 14px;
+    line-height: 70px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

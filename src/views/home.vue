@@ -3,7 +3,7 @@
     <el-container>
       <el-header>
         <img src="./../assets/logo.png" alt="" class="logo" />
-        <span>魔音灌耳</span>
+        <span>鸿运福音</span>
         <el-input
           placeholder="请输入内容"
           suffix-icon="el-icon-search"
@@ -20,15 +20,7 @@
           <cloudMenu></cloudMenu>
         </el-aside>
         <el-main>
-          <!-- <tabs>
-            <div class="home-swiper" slot="personality">
-              <personal-swiper :list="swiperList"></personal-swiper>
-            </div>
-            <div class="recommend" slot="personality">
-              <recommend :list="recommendList"></recommend>
-            </div>
-          </tabs> -->
-          <router-view name="DiscoverMusic"></router-view>
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -37,16 +29,12 @@
 
 <script>
 import CloudMenu from "./../components/menu/menu";
-import PersonalSwiper from "./../components/swiper/swiper";
-import Recommend from "./../components/recommend/recommend";
 
 import axios from "axios";
 
 export default {
   components: {
     CloudMenu,
-    PersonalSwiper,
-    Recommend,
   },
   data() {
     return {
@@ -154,19 +142,5 @@ export default {
   background-color: white;
   color: #333;
   text-align: center;
-
-  .home-swiper {
-    width: 100%;
-    height: 350px;
-    float: left;
-    margin-bottom: 40px;
-    margin-top: 40px;
-  }
-
-  .recommend {
-    width: 100%;
-    float: left;
-    margin: auto;
-  }
 }
 </style>

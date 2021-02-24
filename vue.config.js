@@ -1,3 +1,8 @@
+const path = require("path");
+
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
 module.exports = {
   devServer: {
     // open: true, // 自动打开浏览器
@@ -15,10 +20,9 @@ module.exports = {
       }
     }
   },
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      '@': resolve('src')
-    }
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('styles', resolve('src/assets/styles'))
   }
 }

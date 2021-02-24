@@ -82,12 +82,12 @@ export default {
         this.current--;
       } else {
         this.$emit("prev", this.current, this.list);
-        this.current = 9;
+        this.current = this.list.length - 1;
       }
     },
     // 点击下一张按钮
     next() {
-      if (this.current < 9) {
+      if (this.current < this.list.length - 1) {
         this.$emit("prev", this.current, this.list);
         this.current++;
       } else {
@@ -126,7 +126,7 @@ export default {
 <style lang="scss" scoped>
 .box {
   position: relative;
-  width: calc(100% - 160px);
+  width: calc(100% - 160px) !important;
   height: 100%;
   overflow: hidden;
   margin: auto;

@@ -20,14 +20,15 @@
           <cloudMenu></cloudMenu>
         </el-aside>
         <el-main>
-          <tabs>
+          <!-- <tabs>
             <div class="home-swiper" slot="personality">
               <personal-swiper :list="swiperList"></personal-swiper>
             </div>
             <div class="recommend" slot="personality">
               <recommend :list="recommendList"></recommend>
             </div>
-          </tabs>
+          </tabs> -->
+          <router-view name="DiscoverMusic"></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -36,17 +37,14 @@
 
 <script>
 import CloudMenu from "./../components/menu/menu";
-import Tabs from "./../components/tabs/tabs";
 import PersonalSwiper from "./../components/swiper/swiper";
 import Recommend from "./../components/recommend/recommend";
 
 import axios from "axios";
 
 export default {
-  name: "home",
   components: {
     CloudMenu,
-    Tabs,
     PersonalSwiper,
     Recommend,
   },

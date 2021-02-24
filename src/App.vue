@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     <!-- <home /> -->
-    <router-view ref="home"></router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
-// import Home from "./views/home";
+import Home from "./views/home.vue";
 export default {
   name: "App",
   components: {
-    // Home,
+    Home,
   },
 };
 </script>
@@ -21,6 +21,9 @@ export default {
   padding: 0px;
 }
 #app {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }

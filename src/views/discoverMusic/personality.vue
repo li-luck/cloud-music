@@ -8,7 +8,11 @@
       <br />
       <hr />
       <br />
-      <recommend :list="recommendList"></recommend>
+      <recommend
+        :list="recommendList"
+        :width="width"
+        :height="height"
+      ></recommend>
     </div>
   </div>
 </template>
@@ -30,6 +34,8 @@ export default {
       recommendList: [],
       lista: [],
       listb: [],
+      width: 250,
+      height: 320,
     };
   },
   created() {

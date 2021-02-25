@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import CloudMenu from "./../components/menu/menu";
+import CloudMenu from "./../components/cloudPrivate/menu";
 
 import axios from "axios";
 

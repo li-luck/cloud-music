@@ -9,7 +9,12 @@
       </ul>
     </div>
 
-    <recommend :list="songList" class="recommend" />
+    <recommend
+      :list="songList"
+      :width="width"
+      :height="height"
+      class="recommend"
+    />
   </div>
 </template>
 
@@ -34,6 +39,8 @@ export default {
       ],
       cat: "华语",
       songList: [],
+      width: 250,
+      height: 320,
     };
   },
   created() {

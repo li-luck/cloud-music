@@ -1,10 +1,15 @@
 <template>
   <div class="box">
-    <div class="card-box" v-for="(item, index) in list" :key="index">
-      <el-card>
+    <div
+      class="card-box"
+      v-for="(item, index) in list"
+      :key="index"
+      :style="{ width: width + 'px', height: height + 'px' }"
+    >
+      <el-card :style="{ width: width + 'px', height: height - 70 + 'px' }">
         <img :src="item.coverImgUrl" class="image" />
       </el-card>
-      <span>{{ item.name }}</span>
+      <span :title="item.name">{{ item.name }}</span>
     </div>
   </div>
 </template>
@@ -12,7 +17,22 @@
 <script>
 export default {
   name: "recommend",
-  props: ["list"],
+  props: {
+    list: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+    },
+    width: {
+      type: Number,
+      default: 200,
+    },
+    height: {
+      type: Number,
+      default: 200,
+    },
+  },
   data() {
     return {};
   },
@@ -30,18 +50,15 @@ export default {
   width: 100%;
 }
 .card-box {
-  width: 250px;
-  height: 320px;
   float: left;
   margin: 5px 10px;
   .el-card {
-    width: 250px;
-    height: 250px;
     float: left;
     border-radius: 10px;
   }
   span {
     float: left;
+    width: 100%;
     line-height: 70px;
     font-size: 12px;
     white-space: nowrap;

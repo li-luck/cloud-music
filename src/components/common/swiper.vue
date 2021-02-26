@@ -61,6 +61,9 @@ export default {
   ],
   mounted() {},
   methods: {
+    liEnter(index) {
+      console.log(index);
+    },
     getArticle() {
       this.$emit("getArticle", this.article);
     },
@@ -70,11 +73,9 @@ export default {
       this.stopLoop();
       this.current = index;
     },
-    // 鼠标点击banner内容
     bannerClick(index, item) {
-      this.$emit("click", index, item);
+      this.$emit("clickSwiper", this.current, index, item);
     },
-    // 点击上一张按钮
     prev() {
       if (this.current > 0) {
         // 将对象列表对应的索引和整个对象传出去
@@ -85,7 +86,6 @@ export default {
         this.current = this.list.length - 1;
       }
     },
-    // 点击下一张按钮
     next() {
       if (this.current < this.list.length - 1) {
         this.$emit("prev", this.current, this.list);
@@ -103,12 +103,10 @@ export default {
     stopLoop() {
       clearTimeout(this.timerId); // 清除循环
     },
-    // 初始化加载
     int(time) {
       this.timerId = setInterval(() => {
         this.next();
       }, time);
-      // 初始化样式
       this.intStyle = {
         width: this.width + "px",
         height: this.height + "px",

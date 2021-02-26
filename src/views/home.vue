@@ -23,18 +23,23 @@
           <router-view></router-view>
         </el-main>
       </el-container>
+      <el-footer>
+        <home-footer></home-footer>
+      </el-footer>
     </el-container>
   </div>
 </template>
 
 <script>
 import CloudMenu from "./../components/cloudPrivate/menu";
+import HomeFooter from "./../views/footer/footer";
 
 import axios from "axios";
 
 export default {
   components: {
     CloudMenu,
+    HomeFooter,
   },
   data() {
     return {
@@ -135,12 +140,20 @@ export default {
   color: #333;
   text-align: center;
   width: 240px;
-  border-right: 1px solid rgb(151, 151, 151);
+  border-right: 1px solid rgb(223, 220, 220);
 }
 
 .el-main {
   background-color: white;
   color: #333;
   text-align: center;
+}
+.el-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px !important;
+  background: white;
+  border-top: 1px solid rgb(223, 220, 220);
 }
 </style>

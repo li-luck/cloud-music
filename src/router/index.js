@@ -9,6 +9,7 @@ const Home = () => import('../views/home');
 const DiscoverMusic = () => import('../views/discoverMusic/discoverMusic')
 const Video = () => import('../views/video/video.vue')
 const MusicCloud = () => import('../views/musicCloud/musicCloud.vue')
+const SongListDetail = () => import('../views/songListDetail.vue')
 
 const routes = [{
   path: '/',
@@ -25,6 +26,11 @@ const routes = [{
     {
       path: '/music-cloud',
       component: MusicCloud,
+    },
+    {
+      path: '/song-detail',
+      name: 'songDetail',
+      component: SongListDetail,
     }
   ],
 }]

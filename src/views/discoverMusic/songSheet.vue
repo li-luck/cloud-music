@@ -13,6 +13,7 @@
       :list="songList"
       :width="width"
       :height="height"
+      @clickRecomCard="clickRecomCard"
       class="recommend"
     />
   </div>
@@ -51,6 +52,13 @@ export default {
       this.axios.get(`top/playlist?cat=${cat}`).then((result) => {
         console.log(result);
         this.songList = result.data.playlists;
+      });
+    },
+    /**点击歌单     获取歌单详情*/
+    clickRecomCard(id) {
+      this.$router.push({
+        path: "/song-detail",
+        query: { id: id },
       });
     },
   },

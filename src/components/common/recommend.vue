@@ -5,6 +5,7 @@
       v-for="(item, index) in list"
       :key="index"
       :style="{ width: width + 'px', height: height + 'px' }"
+      @click="clickRecom(item)"
     >
       <el-card :style="{ width: width + 'px', height: height - 70 + 'px' }">
         <img :src="item.coverImgUrl" class="image" />
@@ -41,6 +42,10 @@ export default {
   },
   methods: {
     init() {},
+    clickRecom(item) {
+      console.log(item);
+      this.$emit("clickRecomCard", item.id);
+    },
   },
 };
 </script>

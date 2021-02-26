@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <el-menu
-      default-active="/discover-music"
+      :default-active="$route.path"
       class="el-menu-vertical-demo"
       :router="true"
     >

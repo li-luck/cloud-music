@@ -1,6 +1,7 @@
 <template>
   <div class="box">
     <el-row>
+      <!-- <el-col :span="2"></el-col> -->
       <!--一首 暂停 下一首控件-->
       <el-col :span="2.5">
         <img src="@/assets/imgs/prev.png" @click="changePrevMusic" alt="" />
@@ -69,6 +70,7 @@
         </el-slider>
       </el-col>
     </el-row>
+    <audio v-if="songUrl" :src="songUrl" autoplay class="audio"></audio>
   </div>
 </template>
 
@@ -78,23 +80,57 @@ export default {
   data() {
     return {
       //默认是否在播放
-      isPlay: false,
+      isPlay: this.$store.state.playState,
       //当前音乐的进度条
       musicDuration: 0,
       //总进度条
       totalDuration: 0,
       //音乐的音量
       musicVolume: 20,
+      songUrl: "",
     };
+  },
+  watch: {
+    "$store.state.playState"(newv) {
+      console.log(newv);
+      if (newv == "true") {
+        setTimeout(() => {
+          this.songUrl = this.$store.state.playSongUrl;
+          console.log(this.songUrl);
+        }, 1000);
+      }
+    },
+    "$store.state.playSongID"(newv) {
+      if (this.$store.state.playState == "true") {
+        this.axios.get(`song/url?id=${newv}`).then((result) => {
+          this.songUrl = result.data.data[0].url;
+        });
+      }
+    },
   },
   methods: {
     playMusic() {},
     changePrevMusic() {},
     changeNextMusic() {},
-    silence() {},
+    silence() {
+      if (this.musicVolume !== 0) {
+        this.volumeChange(0);
+        this.musicVolume = 0;
+      } else {
+        this.volumeChange(0.2);
+        this.musicVolume = 20;
+      }
+    },
+    /**真正改变音量 */
+    volumeChange(sum) {
+      let audio = document.querySelector(".audio");
+      audio.volume = sum;
+    },
     musicDurationChange() {},
     showRightPlayList() {},
-    musicVolumeChange() {},
+    musicVolumeChange() {
+      this.volumeChange(this.musicVolume / 100);
+    },
   },
 };
 </script>

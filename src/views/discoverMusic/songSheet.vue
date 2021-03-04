@@ -57,8 +57,7 @@ export default {
     /**点击歌单     获取歌单详情*/
     clickRecomCard(id) {
       this.$router.push({
-        path: "/song-detail",
-        query: { id: id },
+        path: `/song-detail/${id}`,
       });
     },
   },

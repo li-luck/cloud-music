@@ -17,6 +17,15 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      },
+      '/upload': {
+        //代理图片下载的接口
+        target: 'http://www.gaokai.fun/',
+        changeOrigin: true,
+        secure: false, // 设置支持https协议的代理
+        pathRewrite: {
+          '^/upload': ''
+        }
       }
     }
   },

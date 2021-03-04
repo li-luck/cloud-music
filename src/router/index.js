@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+const originalPush = VueRouter.prototype.push
+
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(VueRouter)
 
 const Home = () => import('../views/home');
@@ -9,7 +15,10 @@ const Home = () => import('../views/home');
 const DiscoverMusic = () => import('../views/discoverMusic/discoverMusic')
 const Video = () => import('../views/video/video.vue')
 const MusicCloud = () => import('../views/musicCloud/musicCloud.vue')
-const SongListDetail = () => import('../views/songListDetail.vue')
+
+const SongDetail = () => import('../views/song/songSheetDetail.vue')
+const SongComment = () => import('../views/song/songComment.vue')
+const SongList = () => import('../views/song/songListDetail.vue')
 
 const routes = [{
   path: '/',
@@ -28,15 +37,24 @@ const routes = [{
       component: MusicCloud,
     },
     {
-      path: '/song-detail',
-      name: 'songDetail',
-      component: SongListDetail,
+      path: '/song-detail/:id',
+      component: SongDetail,
+      children: [{
+          path: '/song-list',
+          name: 'song-list',
+          component: SongList,
+        },
+        {
+          path: '/song-comment',
+          component: SongComment,
+        },
+      ]
     }
   ],
 }]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes
 })
 

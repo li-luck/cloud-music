@@ -1,16 +1,20 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://autumnfish.cn/';
-axios.defaults.timeout = 5000;
 
 Vue.use(ElementUI);
 Vue.prototype.axios = axios;
 Vue.config.productionTip = false
+
+
+axios.defaults.baseURL = 'api/';
+axios.defaults.timeout = 15000;
+
 //全局过滤器(秒数转化为分钟)
 Vue.filter('timeFormat', function (time) {
 
@@ -46,5 +50,6 @@ Vue.filter('timeToDate', function (time) {
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

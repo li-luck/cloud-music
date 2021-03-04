@@ -34,8 +34,6 @@
 import CloudMenu from "./../components/cloudPrivate/menu";
 import HomeFooter from "./../views/footer/footer";
 
-import axios from "axios";
-
 export default {
   components: {
     CloudMenu,
@@ -44,38 +42,10 @@ export default {
   data() {
     return {
       input2: "",
-      swiperList: [],
-      recommendList: [],
-      lista: [],
-      listb: [],
     };
   },
-  created() {
-    this.getPersonalSwiper();
-    this.getRecommend();
-  },
-  methods: {
-    /**个性推荐  轮播 */
-    getPersonalSwiper() {
-      axios.get("banner").then((res) => {
-        this.swiperList = res.data.banners;
-        console.log("个性推荐", this.swiperList);
-      });
-    },
-    /**推荐歌单 */
-    getRecommend() {
-      axios.get("top/playlist?offset=711&limit=12").then((res) => {
-        console.log(res);
-        this.recommendList = res.data.playlists;
-        this.lista = this.recommendList.filter((item, index) => {
-          return index < 6;
-        });
-        this.listb = this.recommendList.filter((item, index) => {
-          return index > 5;
-        });
-      });
-    },
-  },
+  created() {},
+  methods: {},
 };
 </script>
 
@@ -92,10 +62,15 @@ export default {
   height: 100%;
 }
 .el-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
   background: #ec4141;
   line-height: 60px;
   padding: 0 20px;
-  display: flex;
+  z-index: 999;
 
   .logo {
     width: 25px;
@@ -132,18 +107,28 @@ export default {
     }
     span {
       cursor: pointer;
+      margin-bottom: -15px;
     }
   }
 }
 .el-aside {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  height: 100%;
   background-color: white;
   color: #333;
   text-align: center;
   width: 240px;
   border-right: 1px solid rgb(223, 220, 220);
+  z-index: 666;
 }
 
 .el-main {
+  position: absolute;
+  left: 200px;
+  top: 60px;
+  width: calc(100% - 200px);
   background-color: white;
   color: #333;
   text-align: center;
@@ -155,5 +140,6 @@ export default {
   height: 50px !important;
   background: white;
   border-top: 1px solid rgb(223, 220, 220);
+  z-index: 888;
 }
 </style>

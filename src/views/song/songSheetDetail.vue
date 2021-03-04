@@ -82,6 +82,7 @@ export default {
       this.information.trackIds.forEach((ele) => {
         ids += ele.id + ",";
       });
+      this.$store.commit("changeSongIds", ids.substring(0, ids.length - 1));
       this.axios
         .get(`song/detail?ids=${ids.substring(0, ids.length - 1)}`)
         .then((res) => {

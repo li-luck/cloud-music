@@ -75,8 +75,8 @@ export default {
     },
     /**点击歌单     获取歌单详情*/
     clickRecomCard(id) {
-      this.axios.get(`playlist/detail?id=${id}`).then((res) => {
-        console.log(res);
+      this.$router.push({
+        path: `/song-detail/${id}`,
       });
     },
   },

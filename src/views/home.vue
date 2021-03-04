@@ -21,10 +21,23 @@
         </el-aside>
         <el-main>
           <router-view></router-view>
+          <div class="drawer" v-if="drawer">
+            <h2>播放列表</h2>
+            <el-table
+              :data="songList"
+              :show-header="false"
+              stripe
+              style="width: 100%"
+            >
+              <el-table-column prop="name" label="音乐标题"> </el-table-column>
+              <el-table-column prop="ar[0].name" label="歌手">
+              </el-table-column>
+            </el-table>
+          </div>
         </el-main>
       </el-container>
       <el-footer>
-        <home-footer></home-footer>
+        <home-footer @getDrawer="getDrawer"></home-footer>
       </el-footer>
     </el-container>
   </div>
@@ -42,10 +55,17 @@ export default {
   data() {
     return {
       input2: "",
+      drawer: false,
+      songList: [],
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    getDrawer(val) {
+      this.drawer = val.drawer;
+      this.songList = val.songList;
+    },
+  },
 };
 </script>
 
@@ -132,12 +152,27 @@ export default {
   background-color: white;
   color: #333;
   text-align: center;
+  .drawer {
+    position: fixed;
+    right: 0;
+    bottom: 60px;
+    width: 500px;
+    height: calc(100% - 120px);
+    box-shadow: 0 0 1px 1px rgb(223, 223, 223);
+    background: white;
+    overflow: auto;
+    h2 {
+      text-align: left;
+      padding: 10px 10px;
+    }
+  }
 }
 .el-footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px !important;
+  height: 60px !important;
+  padding: 0;
   background: white;
   border-top: 1px solid rgb(223, 220, 220);
   z-index: 888;

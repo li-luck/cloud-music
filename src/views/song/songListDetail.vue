@@ -32,6 +32,7 @@ export default {
   methods: {
     columnClick(item) {
       console.log("点击的歌曲", item);
+      //获取点击音乐的url
       this.axios
         .get(`song/url?id=${item.id}`)
         .then((result) => {
@@ -39,6 +40,7 @@ export default {
           this.url = result.data.data[0].url;
         })
         .then(() => {
+          this.$store.commit("changeSongDetail", item);
           this.$store.commit("changePlay", item.id);
           this.$store.commit("changePlayUrl", this.url);
           this.$store.commit("changePlayState", "true");

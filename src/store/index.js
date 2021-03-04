@@ -7,7 +7,9 @@ const store = new Vuex.Store({
   state: {
     playState: false,
     playSongID: Number,
-    playSongUrl: ''
+    playSongUrl: '',
+    songDetail: {},
+    songIds: ''
   },
   //不可异步
   mutations: {
@@ -20,7 +22,13 @@ const store = new Vuex.Store({
     },
     changePlayUrl(state, url) {
       state.playSongUrl = url;
-    }
+    },
+    changeSongDetail(state, item) {
+      state.songDetail = item;
+    },
+    changeSongIds(state, ids) {
+      state.songIds = ids;
+    },
   },
   //类似mutation    可异步
   actions: {},

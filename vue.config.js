@@ -5,7 +5,7 @@ function resolve(dir) {
 }
 module.exports = {
   devServer: {
-    // open: true, // 自动打开浏览器
+    open: true, // 自动打开浏览器
     // host: 'localhost',
     // port: 9930,
     // https: false,
